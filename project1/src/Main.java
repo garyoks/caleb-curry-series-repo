@@ -2,89 +2,69 @@
 // 31 videos. Starting here working with arrays.
 // never-mind. I'm going to make a password validator & generator
 // and probably much more stuff
-import com.practiceProjects.User;
+import com.practiceProjects.UserDatabase.User;
+
 import java.util.Scanner;
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
+    public static String userChoiceString = "";
+    public static int userChoiceInt = 0;
+    public static boolean isFirstIteration = true;
+    public static String[] programs = {"User Database",
+            "whatever the next thing is...",
+            "Console Chess"};
+    public static String againString = "";
     public static void main(String[] args) {
-        System.out.println("hi here's some of the practice problems/projects I've been working on:\n");
+        System.out.println("\n\nHi how are you?\nWonderful weather we're having\nHere's some of the practice problems/projects I've been working on:\n");
         Main.chooseProgram();
-    }
+        scanner.close();
+    } //calls chooseProgram()
     private static void chooseProgram() {
-        System.out.println("Here's a list of the functionality I have built so far in this practice clusterfuck.\n" +
-                "Press the number associated with the program you want to run, or press Q to quit");
-        Scanner scanner = new Scanner(System.in);
-//        String userChoice = chooserScanner.next();
-        int userChoiceInt = 0;
-        boolean isFirstIteration = true;
+        isFirstIteration = true;
         while (true) {
             try {
-                if (!isFirstIteration) {
-                    System.out.println("Enter a number on the list please:");
+                if (isFirstIteration) {
+                    System.out.println("Enter the number associated with the program you want to run, or press Q to quit");
+                } else {
+                    System.out.println("Enter a number on the list please, or press Q to quit:");
                 }
-                userChoiceInt = scanner.nextInt();
-                /*switch (userChoiceInt) {
+                for (int i = 0; i < programs.length; i++) {
+                    System.out.println((i + 1) + " - " + programs[i]);
+                }
+                userChoiceString = scanner.nextLine();
+                if (userChoiceString.equalsIgnoreCase("Q")) {
+                    return;
+                }
+                userChoiceInt = Integer.parseInt(userChoiceString);
+                switch (userChoiceInt) {
                     case 1:
-                        //User.createUser();
+                        User.createUser();
                         break;
-                }*/
-                if (userChoiceInt == 1) {
-                    //User.createUser();
-                    System.out.println("**call method here**");
+                    case 2:
+                        System.out.println("A work in progress...");
+                        break;
+                    case 3:
+                        System.out.println("This one will be a console chess game...");
+                        break;
                 }
-                else {
+                if (userChoiceInt > 3) {
                     System.out.println("Haven't done that one yet");
-                }
+                }  // prolly delete later.,/
                 break;
             } catch (Exception e) {
                 System.out.println("Error:" + e.getMessage());
             }
         isFirstIteration = false;
         }
-        //chooserScanner.close();
-
-        //Scanner againScanner = new Scanner(System.in);
-        //System.out.println("Would you like to run another program? (Y / N)");
-        //String againString = null;
-        //while (true) {
-/*            try {
-                System.out.println("Would you like to run another program? (Y / N)");
-                Scanner againScanner = new Scanner(System.in);
-                //againScanner.next();
-                String againString = againScanner.next();
-                //againScanner.close();
-
-                if (againString.charAt(0) == 'Y' || againString.charAt(0) == 'y' || againString.charAt(0) == 'N' || againString.charAt(0) == 'n') {
-                    if (againString.charAt(0) == 'Y' || againString.charAt(0) == 'y') {
-                        againScanner.close();
-                        Main.chooseProgram();
-                    } else {
-                        againScanner.close();
-                        return;
-                    }
-                }
-                //break;
-            } catch (Exception e) {
-                System.out.println("follow directions. thx\n" + e.getMessage());
-            }*/
-
-        // chatGPT's method:
-
-        String againString;
         while (true) {
             try {
-
-                //Scanner againScanner = new Scanner(System.in);
-                //againScanner.nextLine();
+                scanner.nextLine();
                 System.out.println("Would you like to run another program? (Y / N)");
-                //againString = againScanner.next();
-                againString = scanner.next();
-
+                againString = scanner.nextLine();
                 if (againString.length() == 1 && "YyNn".contains(againString)) {
                     if (againString.equalsIgnoreCase("Y")) {
-                        //againScanner.close();
                         Main.chooseProgram();
                     } else {
-                        //againScanner.close();
                         return;
                     }
                 } else {
@@ -94,7 +74,5 @@ public class Main {
                 System.out.println("An error occurred: " + e.getMessage());
             }
         }
-        //}
-        //againScanner.close();
     }
 }

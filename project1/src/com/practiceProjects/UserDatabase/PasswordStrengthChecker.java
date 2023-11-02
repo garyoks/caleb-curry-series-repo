@@ -1,4 +1,4 @@
-package com.practiceProjects;
+package com.practiceProjects.UserDatabase;
 
 public class PasswordStrengthChecker {
     private boolean isValidPassword = false;
