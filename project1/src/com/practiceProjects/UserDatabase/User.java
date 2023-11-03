@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class User {
     public static String tempUsername;
     public static String createAnotherUserString;
-    public static boolean iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
+    //public static boolean iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
     //basically a check of whether or not the user wants to continue^^
     private String userName;
     private String password;
@@ -32,50 +32,51 @@ public class User {
                 "\n                             - have at least one special character" +
                 "\n                             - not contain any spaces");
     }*/
-    public static void createUser() {
-        iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
-        tempUsername = "";
-        Scanner userScanner = new Scanner(System.in);
-        System.out.println("Type \"QUIT\" if you want to quit\n\nEnter your username (cannot contain a space): ");
+    public static void createUser(Scanner scanner) {
+        //iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
         while (true) {
-            tempUsername = userScanner.nextLine();
-            if (tempUsername.equalsIgnoreCase("QUIT")) {
-                userScanner.close();
-                iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = false;
-                return;
-            }
+            tempUsername = "";
+            //Scanner userScanner = new Scanner(System.in);
+            System.out.println("Type \"QUIT\" if you want to quit\n\nEnter your username (cannot contain a space): ");
+            while (true) {
+                tempUsername = scanner.nextLine();
+                if (tempUsername.equalsIgnoreCase("QUIT")) {
 
-            if (tempUsername != null && !tempUsername.isEmpty() && !tempUsername.contains(" ")) {
-                break;
-            } else {
-                System.out.println("Make sure your username doesn't contain a space\nEnter your username: ");
+                    //iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = false;
+                    return;
+                }
+                if (tempUsername != null && !tempUsername.isEmpty() && !tempUsername.contains(" ")) {
+                    break;
+                } else {
+                    System.out.println("Make sure your username doesn't contain a space\nEnter your username: ");
+                }
             }
-        }
-        System.out.println("Username entered: " + tempUsername + "\nThis is as far as I've gotten\n\n" +
-                "**call constructor with a single username parameter\n\n");
+            System.out.println("Username entered: " + tempUsername + "\nThis is as far as I've gotten\n\n" +
+                    "**call constructor with a single username parameter\n\n");
         /*Map<String, User> objectMap = new HashMap<>();
         User newObject = new User();
         objectMap.put(tempUsername, newObject);
 */
-        if (iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug) {
-            while (true) {
-                try {
-                    System.out.println("Would you like to create another user? (Y / N)");
-                    createAnotherUserString = userScanner.nextLine();
-                    if (createAnotherUserString.length() == 1 && "YyNn".contains(createAnotherUserString)) {
-                        if (createAnotherUserString.equalsIgnoreCase("Y")) {
-                            User.createUser();  //recursion
+            //if (iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug) {
+                while (true) {
+                    try {
+                        System.out.println("Would you like to create another user? (Y / N)");
+                        createAnotherUserString = scanner.nextLine();
+                        if (createAnotherUserString.length() == 1 && "YyNn".contains(createAnotherUserString)) {
+                            if (createAnotherUserString.equalsIgnoreCase("Y")) {
+                                break;
+                                //User.createUser(scanner);  //recursion
+                            } else {
+                                return;
+                            }
                         } else {
-                            userScanner.close();
-                            return;
+                            System.out.println("follow directions. there are 2 choices. thx\n");
                         }
-                    } else {
-                        System.out.println("follow directions. there are 2 choices. thx\n");
+                    } catch (Exception e) {
+                        System.out.println("follow directions. thx\n" + e.getMessage());
                     }
-                } catch (Exception e) {
-                    System.out.println("follow directions. thx\n" + e.getMessage());
                 }
-            }
+            //}
         }
     }
 
