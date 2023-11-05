@@ -1,42 +1,48 @@
-// I'm skipping ahead quite a bit bc I already know everything he covered in the first
-// 31 videos. Starting here working with arrays.
-// never-mind. I'm going to make a password validator & generator
-// and probably much more stuff
 import com.practiceProjects.UserDatabase.User;
-
 import java.util.Scanner;
+//just testing hashmap
+import com.practiceProjects.UserDatabase.UserManager;
+
 public class Main {
-    public static Scanner scanner = new Scanner(System.in);
-    public static String userChoiceString = "";
-    public static int userChoiceInt = 0;
-    public static boolean isFirstIteration = true;
+    //public static Scanner scanner = new Scanner(System.in);
+    //public static String userChoiceString = "";
+    //public static int userChoiceInt = 0;
+    //public static boolean isFirstIteration = true;
     public static String[] programs = {"User Database",
             "whatever the next thing is...",
             "Console Chess"};
-    public static String againString = "";
+    //public static String againString = "";
     public static void main(String[] args) {
-        System.out.println("\n\nHi how are you?\nWonderful weather we're having\nHere's some of the practice problems/projects I've been working on:\n");
         Main.chooseProgram();
-        scanner.close();
+
+        //just testing hashmap
+        System.out.println(UserManager.userIds);
     } //calls chooseProgram()
+
+
+
     private static void chooseProgram() {
+        System.out.println("\n\nHere's some of the practice problems/projects I've been working on:\n");
+        Scanner scanner = new Scanner(System.in);
+        boolean isFirstIteration = true;
         while (true) {
             isFirstIteration = true;
             while (true) {
                 try {
                     if (isFirstIteration) {
-                        System.out.println("Enter the number associated with the program you want to run, or press Q to quit");
+                        System.out.println("Enter the number of the program you want to run, or press Q to quit");
                     } else {
                         System.out.println("Enter a number on the list please, or press Q to quit:");
                     }
                     for (int i = 0; i < programs.length; i++) {
                         System.out.println((i + 1) + " - " + programs[i]);
                     }
-                    userChoiceString = scanner.nextLine();
+                    String userChoiceString = scanner.nextLine();
                     if (userChoiceString.equalsIgnoreCase("Q")) {
+                        scanner.close();
                         return;
                     }
-                    userChoiceInt = Integer.parseInt(userChoiceString);
+                    int userChoiceInt = Integer.parseInt(userChoiceString);
                     switch (userChoiceInt) {
                         case 1:
                             User.createUser(scanner);
@@ -48,10 +54,7 @@ public class Main {
                             System.out.println("This one will be a console chess game...");
                             break;
                     }
-                    if (userChoiceInt > 3) {
-                        System.out.println("Haven't done that one yet");
-                    }  // prolly delete later.,/
-                    break;
+                    if (userChoiceInt < 3) break;
                 } catch (Exception e) {
                     System.out.println("Error:" + e.getMessage());
                 }
@@ -59,14 +62,13 @@ public class Main {
             }
             while (true) {
                 try {
-                    //scanner.nextLine();
                     System.out.println("Would you like to run another program? (Y / N)");
-                    againString = scanner.nextLine();
+                    String againString = scanner.nextLine();
                     if (againString.length() == 1 && "YyNn".contains(againString)) {
                         if (againString.equalsIgnoreCase("Y")) {
                             break;
-                            //Main.chooseProgram();
                         } else {
+                            scanner.close();
                             return;
                         }
                     } else {
@@ -77,7 +79,5 @@ public class Main {
                 }
             }
         }
-
-
     }
 }

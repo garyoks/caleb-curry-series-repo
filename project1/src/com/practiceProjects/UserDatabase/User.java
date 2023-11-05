@@ -1,89 +1,76 @@
 package com.practiceProjects.UserDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
+import java.util.ArrayList;
+import com.practiceProjects.UserDatabase.UserManager;
 public class User {
-    public static String tempUsername;
-    public static String createAnotherUserString;
-    //public static boolean iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
-    //basically a check of whether or not the user wants to continue^^
+    private static int tempUserId;
+    private static String tempUsername;
+    private static String createAnotherUserString;
     private String userName;
     private String password;
     private int[] dateOfBirth = new int[3];
-    private boolean isValidPassword = false;
+    private static ArrayList<Integer> userIdList = new ArrayList<Integer>();
+    //getters:
 
-//constructors:
-    /*public void User(){
-        userName = "New";
-        password = "";
-        for (int i = 0; i < 3; i++) {
-            dateOfBirth[i] = 0;
-        }
-    }*/
-/*    private void User(String userName) {
-        this.userName = userName;
-        System.out.println("username: " + userName);
+    //setters:
+
+    public User(Scanner scanner, Integer userId, String username) {
+        userName = username;
+        System.out.println("username: " + username);
         System.out.println("Enter your password. It must:" +
                 "\n                             - be at least 7 characters long" +
                 "\n                             - have at least one capital letter" +
                 "\n                             - have at least one number" +
                 "\n                             - have at least one special character" +
                 "\n                             - not contain any spaces");
+    }
+/*    public static User constructorCaller (Scanner scanner, int userId, String username) {
+        return new User(scanner, userId, username);
     }*/
+
+
+
+
+
     public static void createUser(Scanner scanner) {
-        //iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = true;
+        if (userIdList.isEmpty()) userIdList.add(0);
+        int tempUserId = userIdList.get((userIdList.size() - 1));
         while (true) {
             tempUsername = "";
-            //Scanner userScanner = new Scanner(System.in);
             System.out.println("Type \"QUIT\" if you want to quit\n\nEnter your username (cannot contain a space): ");
             while (true) {
                 tempUsername = scanner.nextLine();
-                if (tempUsername.equalsIgnoreCase("QUIT")) {
-
-                    //iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug = false;
-                    return;
-                }
-                if (tempUsername != null && !tempUsername.isEmpty() && !tempUsername.contains(" ")) {
-                    break;
-                } else {
-                    System.out.println("Make sure your username doesn't contain a space\nEnter your username: ");
-                }
+                if (tempUsername.equalsIgnoreCase("QUIT")) return;
+                if (tempUsername != null && !tempUsername.isEmpty() && !tempUsername.contains(" ")) break;
+                else System.out.println("Make sure your username doesn't contain a space\nEnter your username: ");
             }
             System.out.println("Username entered: " + tempUsername + "\nThis is as far as I've gotten\n\n" +
                     "**call constructor with a single username parameter\n\n");
-        /*Map<String, User> objectMap = new HashMap<>();
-        User newObject = new User();
-        objectMap.put(tempUsername, newObject);
-*/
-            //if (iReallyShouldntHaveToDoThisButLetsSeeIfItFixesTheBug) {
-                while (true) {
-                    try {
-                        System.out.println("Would you like to create another user? (Y / N)");
-                        createAnotherUserString = scanner.nextLine();
-                        if (createAnotherUserString.length() == 1 && "YyNn".contains(createAnotherUserString)) {
-                            if (createAnotherUserString.equalsIgnoreCase("Y")) {
-                                break;
-                                //User.createUser(scanner);  //recursion
-                            } else {
-                                return;
-                            }
+
+            //put all logic for filling out User fields into the UserManager class
+            System.out.println(UserManager.userFactoryAccessor(scanner, tempUserId, tempUsername));
+
+
+
+
+
+            while (true) {
+                try {
+                    System.out.println("Would you like to create another user? (Y / N)");
+                    createAnotherUserString = scanner.nextLine();
+                    if (createAnotherUserString.length() == 1 && "YyNn".contains(createAnotherUserString)) {
+                        if (createAnotherUserString.equalsIgnoreCase("Y")) {
+                            break;
                         } else {
-                            System.out.println("follow directions. there are 2 choices. thx\n");
+                            return;
                         }
-                    } catch (Exception e) {
-                        System.out.println("follow directions. thx\n" + e.getMessage());
+                    } else {
+                        System.out.println("follow directions. there are 2 choices. thx\n");
                     }
+                } catch (Exception e) {
+                    System.out.println("follow directions. thx\n" + e.getMessage());
                 }
-            //}
+            }
         }
     }
-
-
-//    public void User(String userName) {
-//        if (userName isAvailable) {
-//            this.userName=userName;
-//        }
-//    }
 }

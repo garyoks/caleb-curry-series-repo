@@ -1,5 +1,1 @@
-Hello World. This is me again trying to create a README.md file using Vim. It's fine for quick, simple tasks like this, but I'm not sure why anyone in our modern society would willingly choose to use this or Emacs to write actual code.
-
-Thank you.
-
-Goodbye.
+I'm not doing the Caleb Curry Series, this is just going to be a repository filled with random Java practice/ projects I work through as I learn.
