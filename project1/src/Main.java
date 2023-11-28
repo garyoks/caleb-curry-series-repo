@@ -1,26 +1,27 @@
 import com.practiceProjects.UserDatabase.User;
-import java.util.Scanner;
-//just testing hashmap
 import com.practiceProjects.UserDatabase.UserManager;
 
+import static com.practiceProjects.UserDatabase.UserManager.userList;
+
+import java.util.Scanner;
 public class Main {
-    //public static Scanner scanner = new Scanner(System.in);
-    //public static String userChoiceString = "";
-    //public static int userChoiceInt = 0;
-    //public static boolean isFirstIteration = true;
     public static String[] programs = {"User Database",
             "whatever the next thing is...",
             "Console Chess"};
-    //public static String againString = "";
     public static void main(String[] args) {
         Main.chooseProgram();
 
-        //just testing hashmap
-        System.out.println(UserManager.userIds);
+        if (!userList.isEmpty()) {
+            //Testing that users are, in fact, created
+            System.out.println("\nAll User Details:");
+            for (User user : userList) {
+                String username = user.getUsername();
+                String password = user.getPassword();
+                System.out.println("Username: " + username + "\nPassword: " + password);
+                System.out.println();
+            }
+        }
     } //calls chooseProgram()
-
-
-
     private static void chooseProgram() {
         System.out.println("\n\nHere's some of the practice problems/projects I've been working on:\n");
         Scanner scanner = new Scanner(System.in);
@@ -45,7 +46,7 @@ public class Main {
                     int userChoiceInt = Integer.parseInt(userChoiceString);
                     switch (userChoiceInt) {
                         case 1:
-                            User.createUser(scanner);
+                            UserManager.createUser(scanner);
                             break;
                         case 2:
                             System.out.println("A work in progress...");
